@@ -27,4 +27,30 @@ app.MapPost("/solve", (SudokuInput request, string typeSolver="basic") =>
 .WithOpenApi();
 
 
+app.UseExceptionHandler(errorAPI =>
+{
+    errorAPI.Run(async context =>
+    {
+        
+
+        var exceptionHandlerFeature = context.Features.Get<Microsoft.AspNetCore.Diagnostics.IExceptionHandlerFeature>();
+        if (exceptionHandlerFeature != null)
+        {
+            var ex = exceptionHandlerFeature.Error;
+            context.Response.StatusCode = ex switch
+            {
+                ArgumentOutOfRangeException => StatusCodes.Status400BadRequest,
+                ArgumentException => StatusCodes.Status400BadRequest,
+                KeyNotFoundException => StatusCodes.Status404NotFound,
+                _ => StatusCodes.Status500InternalServerError
+            };
+            context.Response.ContentType = "application/json";
+            await context.Response.WriteAsJsonAsync(new 
+            {
+                error = ex.Message
+            });
+        }
+    });
+});
+
 app.Run();
