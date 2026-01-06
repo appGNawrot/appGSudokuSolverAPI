@@ -1,5 +1,6 @@
 using appGSudokuSolverAPI.Models;
 using appGSudokuSolverLib;
+using System.Text;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -25,6 +26,19 @@ app.MapPost("/solve", (SudokuInput request, string typeSolver="basic") =>
 })
 .WithName("Solve")
 .WithOpenApi();
+
+
+app.MapPost("/solve-human-friendly", (SudokuInput request, string typeSolver = "basic") =>
+{
+    var solvedBoard = SudokuSolver.Instance.Solve(request.board, typeSolver);
+    var resultHumanFriendly = new StringBuilder();
+    for (int i = 0; i < 9; i++)
+        resultHumanFriendly.AppendLine(string.Join(",", solvedBoard.Skip(i * 9).Take(9)));
+    return Results.Text(resultHumanFriendly.ToString(), "text/plain");
+})
+.WithName("SolveHumanFriendly")
+.WithOpenApi();
+
 
 
 app.UseExceptionHandler(errorAPI =>
