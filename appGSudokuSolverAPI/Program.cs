@@ -31,8 +31,6 @@ app.UseExceptionHandler(errorAPI =>
 {
     errorAPI.Run(async context =>
     {
-        
-
         var exceptionHandlerFeature = context.Features.Get<Microsoft.AspNetCore.Diagnostics.IExceptionHandlerFeature>();
         if (exceptionHandlerFeature != null)
         {
@@ -41,6 +39,7 @@ app.UseExceptionHandler(errorAPI =>
             {
                 ArgumentOutOfRangeException => StatusCodes.Status400BadRequest,
                 ArgumentException => StatusCodes.Status400BadRequest,
+                InvalidOperationException => StatusCodes.Status400BadRequest,
                 KeyNotFoundException => StatusCodes.Status404NotFound,
                 _ => StatusCodes.Status500InternalServerError
             };
