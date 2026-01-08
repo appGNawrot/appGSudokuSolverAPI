@@ -1,11 +1,7 @@
 using appGSudokuSolverAPI.Models;
 using appGSudokuSolverLib;
 using System.Text;
-
 var builder = WebApplication.CreateBuilder(args);
-
-// Add services to the container.
-// Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
@@ -17,7 +13,6 @@ if (app.Environment.IsDevelopment())
     app.UseSwagger();
     app.UseSwaggerUI();
 }
-
 app.UseHttpsRedirection();
 
 app.MapPost("/solve", (SudokuInput request, string typeSolver="basic") =>
@@ -25,8 +20,9 @@ app.MapPost("/solve", (SudokuInput request, string typeSolver="basic") =>
     return new SudokuOutput(SudokuSolver.Instance.Solve(request.board, typeSolver));
 })
 .WithName("Solve")
+.WithSummary("Rozwi¹zuje Sudoku i zwraca wynik w formacie JSON")
+.WithDescription("Request body powinien zawieraæ obiekt JSON z polem \"board\", bêd¹cym tablic¹ 81 liczb ca³kowitych.Liczby nale¿y podaæ w kolejnoœci wierszami (od lewej do prawej).Wartoœæ 0 oznacza puste pole w Sudoku.Dozwolone wartoœci: 0–9.")
 .WithOpenApi();
-
 
 app.MapPost("/solve-human-friendly", (SudokuInput request, string typeSolver = "basic") =>
 {
@@ -37,6 +33,8 @@ app.MapPost("/solve-human-friendly", (SudokuInput request, string typeSolver = "
     return Results.Text(resultHumanFriendly.ToString(), "text/plain");
 })
 .WithName("SolveHumanFriendly")
+.WithSummary("Rozwi¹zuje Sudoku i zwraca wynik w formacie czytelnym dla cz³owieka")
+.WithDescription("Request body powinien zawieraæ obiekt JSON z polem \"board\", bêd¹cym tablic¹ 81 liczb ca³kowitych.Liczby nale¿y podaæ w kolejnoœci wierszami (od lewej do prawej).Wartoœæ 0 oznacza puste pole w Sudoku.Dozwolone wartoœci: 0–9.")
 .WithOpenApi();
 
 

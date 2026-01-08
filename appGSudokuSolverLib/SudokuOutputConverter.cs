@@ -7,7 +7,7 @@ internal class SudokuOutputConverter
     /// </summary>
     /// <param name="board"></param>
     /// <returns></returns>
-    internal static List<byte> Convert(SudokuBoard board)
+    internal static List<byte> Convert(SudokuBoard? board)
     {
         var result = new List<byte>();
         if(board == null)
@@ -32,7 +32,6 @@ internal class SudokuOutputConverter
                 }
             }
         }
-
         return result;
     }
 }

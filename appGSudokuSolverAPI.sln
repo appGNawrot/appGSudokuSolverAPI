@@ -7,6 +7,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "appGSudokuSolverAPI", "appG
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "appGSudokuSolverLib", "appGSudokuSolverLib\appGSudokuSolverLib.csproj", "{915E5D43-93CA-43B9-88FA-2AD1C77C09C9}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "appGSudokuSolverLibTest", "appGSudokuSolverLibTest\appGSudokuSolverLibTest.csproj", "{77EA18CF-784B-4A71-8F52-01AF5CA38C84}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -21,6 +23,10 @@ Global
 		{915E5D43-93CA-43B9-88FA-2AD1C77C09C9}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{915E5D43-93CA-43B9-88FA-2AD1C77C09C9}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{915E5D43-93CA-43B9-88FA-2AD1C77C09C9}.Release|Any CPU.Build.0 = Release|Any CPU
+		{77EA18CF-784B-4A71-8F52-01AF5CA38C84}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{77EA18CF-784B-4A71-8F52-01AF5CA38C84}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{77EA18CF-784B-4A71-8F52-01AF5CA38C84}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{77EA18CF-784B-4A71-8F52-01AF5CA38C84}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

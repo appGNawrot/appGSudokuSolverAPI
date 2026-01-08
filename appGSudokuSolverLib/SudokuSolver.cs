@@ -9,6 +9,7 @@ public class SudokuSolver
     internal SudokuSolver()
     {
         AvailableSolvers.Add("BASIC", new SudokuSolverBasic());
+        AvailableSolvers.Add("NAIVE", new SudokuSolverNaive());
     }
 
     /// <summary>
